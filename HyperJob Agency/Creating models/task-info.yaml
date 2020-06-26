@@ -1086,6 +1086,12 @@ files:
 - name: db.test.sqlite3
   visible: true
   learner_created: true
+- name: hyperjob/hyperjob/views.py
+  visible: true
+  learner_created: true
+- name: hyperjob/templates/main.html
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/94/stages/519/implement
 status: Solved
-record: -1
+record: 1
