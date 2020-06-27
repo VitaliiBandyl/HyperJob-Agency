@@ -1177,6 +1177,18 @@ files:
 
     # Create your views here.
   learner_created: true
+- name: hyperjob/templates/resume_list.html
+  visible: true
+  learner_created: true
+- name: hyperjob/templates/vacancy_list.html
+  visible: true
+  learner_created: true
+- name: hyperjob/resume/urls.py
+  visible: true
+  learner_created: true
+- name: hyperjob/vacancy/urls.py
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/94/stages/520/implement
 status: Solved
-record: -1
+record: 2

@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Resume
 
-# Create your views here.
+
+class ResumeList(ListView):
+    model = Resume
+    template_name = 'resume_list.html'
