@@ -835,23 +835,6 @@ files:
         path('', views.VacancyList.as_view()),
     ]
   learner_created: true
-- name: hyperjob/templates/resume_list.html
-  visible: true
-  text: |-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Resumes list</title>
-    </head>
-    <body>
-    <body>
-    {% for resume in resume_list %}
-    <div>{{resume.author}}: {{resume.description}}</div>
-    {% endfor %}
-    </body>
-    </html>
-  learner_created: true
 - name: hyperjob/resume/migrations/0001_initial.py
   visible: true
   text: |
@@ -894,18 +877,6 @@ files:
     urlpatterns = [
         path('', views.ResumeList.as_view()),
     ]
-  learner_created: true
-- name: hyperjob/vacancy/models.py
-  visible: true
-  text: |
-    from django.contrib.auth.models import User
-    from django.db import models
-
-
-    class Vacancy(models.Model):
-        """Vacancy model"""
-        description = models.TextField(max_length=1024)
-        author = models.ForeignKey(User, on_delete=models.CASCADE)
   learner_created: true
 - name: hyperjob/hyperjob/__init__.py
   visible: true
@@ -967,22 +938,6 @@ files:
 - name: hyperjob/vacancy/__init__.py
   visible: true
   learner_created: true
-- name: hyperjob/templates/vacancy_list.html
-  visible: true
-  text: |-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Vacancies List</title>
-    </head>
-    <body>
-    {% for vacancy in vacancy_list %}
-    <div>{{vacancy.author}}: {{vacancy.description}}</div>
-    {% endfor %}
-    </body>
-    </html>
-  learner_created: true
 - name: hyperjob/resume/__init__.py
   visible: true
   learner_created: true
@@ -1010,15 +965,6 @@ files:
 
     class ResumeConfig(AppConfig):
         name = 'resume'
-  learner_created: true
-- name: hyperjob/resume/admin.py
-  visible: true
-  text: |-
-    from django.contrib import admin
-    from .models import Resume
-    # Register your models here.
-
-    admin.site.register(Resume)
   learner_created: true
 - name: hyperjob/hyperjob/urls.py
   visible: true
@@ -1050,18 +996,6 @@ files:
         path('admin/', admin.site.urls),
     ]
   learner_created: true
-- name: hyperjob/resume/views.py
-  visible: true
-  text: |
-    from django.shortcuts import render
-    from django.views.generic import ListView
-    from .models import Resume
-
-
-    class ResumeList(ListView):
-        model = Resume
-        template_name = 'resume_list.html'
-  learner_created: true
 - name: hyperjob/manage.py
   visible: true
   text: |
@@ -1086,25 +1020,6 @@ files:
 
     if __name__ == '__main__':
         main()
-  learner_created: true
-- name: hyperjob/templates/main.html
-  visible: true
-  text: |-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Main Menu</title>
-    </head>
-    <body>
-    <h2>Welcome to HyperJob!</h2>
-    <div><a href="/login">Login Page</a></div>
-    <div><a href="/signup">Registration</a></div>
-    <div><a href="/vacancies">Vacancies</a></div>
-    <div><a href="/resumes">Resumes</a></div>
-    <div><a href="/home">Home</a></div>
-    </body>
-    </html>
   learner_created: true
 - name: hyperjob/vacancy/admin.py
   visible: true
@@ -1240,6 +1155,22 @@ files:
 
     STATIC_URL = '/static/'
   learner_created: true
+- name: hyperjob/templates/vacancy_list.html
+  visible: true
+  text: |-
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vacancies List</title>
+    </head>
+    <body>
+    {% for vacancy in vacancy_list %}
+    <div>{{vacancy.author}}: {{vacancy.description}}</div>
+    {% endfor %}
+    </body>
+    </html>
+  learner_created: true
 - name: hyperjob/hyperjob/views.py
   visible: true
   text: |
@@ -1250,6 +1181,78 @@ files:
     class MainMenu(TemplateView):
         template_name = 'main.html'
   learner_created: true
+- name: hyperjob/templates/resume_list.html
+  visible: true
+  text: |-
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Resumes list</title>
+    </head>
+    <body>
+    <body>
+    {% for resume in resume_list %}
+    <div>{{resume.author}}: {{resume.description}}</div>
+    {% endfor %}
+    </body>
+    </html>
+  learner_created: true
+- name: hyperjob/templates/main.html
+  visible: true
+  text: |-
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Main Menu</title>
+    </head>
+    <body>
+    <h2>Welcome to HyperJob!</h2>
+    <div><a href="/login">Login Page</a></div>
+    <div><a href="/signup">Registration</a></div>
+    <div><a href="/vacancies">Vacancies</a></div>
+    <div><a href="/resumes">Resumes</a></div>
+    <div><a href="/home">Home</a></div>
+    </body>
+    </html>
+  learner_created: true
+- name: hyperjob/resume/admin.py
+  visible: true
+  text: |-
+    from django.contrib import admin
+    from .models import Resume
+    # Register your models here.
+
+    admin.site.register(Resume)
+  learner_created: true
+- name: hyperjob/resume/views.py
+  visible: true
+  text: |
+    from django.shortcuts import render
+    from django.views.generic import ListView
+    from .models import Resume
+
+
+    class ResumeList(ListView):
+        model = Resume
+        template_name = 'resume_list.html'
+  learner_created: true
+- name: hyperjob/vacancy/models.py
+  visible: true
+  text: |
+    from django.contrib.auth.models import User
+    from django.db import models
+
+
+    class Vacancy(models.Model):
+        """Vacancy model"""
+        description = models.TextField(max_length=1024)
+        author = models.ForeignKey(User, on_delete=models.CASCADE)
+  learner_created: true
+- name: hyperjob/hyperjob/forms.py
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/94/stages/521/implement
 status: Solved
-record: -1
+record: 3
