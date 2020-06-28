@@ -21,9 +21,10 @@ from . import views
 
 urlpatterns = [
     path('', views.MainMenu.as_view(), name='Menu'),
-    path('resumes/', include('resume.urls')),
-    path('vacancies/', include('vacancy.urls')),
+    path('resume', include('resume.urls')),
+    path('vacanc', include('vacancy.urls')),
     path('login', views.MyLoginView.as_view()),
     path('signup', views.SignupView.as_view()),
+    path('home/', views.HomeView.as_view()),
     path('admin/', admin.site.urls),
 ]
